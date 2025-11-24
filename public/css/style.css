@@ -1,0 +1,35 @@
+body {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+.card {
+    transition: transform 0.2s;
+}
+
+.file-card:hover {
+    transform: translateY(-5px);
+    border-color: #0d6efd !important;
+}
+
+.input-group-text {
+    background-color: #343a40;
+    border-color: #495057;
+    color: #f8f9fa;
+}
+
+.form-control {
+    background-color: #2b3035;
+    border-color: #495057;
+    color: #f8f9fa;
+}
+
+.form-control:focus {
+    background-color: #2b3035;
+    border-color: #0d6efd;
+    color: #f8f9fa;
+}
+
+.form-control::placeholder {
+    color: #adb5bd;
+}
