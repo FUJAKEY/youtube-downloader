@@ -1,0 +1,80 @@
+<%- include('partials/header', { title: 'Мой Диск', user: user }) %>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-white"><i class="bi bi-folder2-open me-2"></i> Мои файлы</h2>
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#uploadModal">
+            <i class="bi bi-cloud-upload me-2"></i> Загрузить файл
+        </button>
+    </div>
+
+    <!-- Upload Modal -->
+    <div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title" id="uploadModalLabel">Загрузка файла</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <form action="/upload" method="POST" enctype="multipart/form-data">
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="fileInput" class="form-label">Выберите файл</label>
+                            <input class="form-control bg-secondary text-white border-secondary" type="file" id="fileInput" name="file" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer border-secondary">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary">Загрузить</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <% if (files.length === 0) { %>
+        <div class="alert alert-secondary text-center py-5" role="alert">
+            <i class="bi bi-inbox display-1 text-muted mb-3 d-block"></i>
+            <p class="mb-0 fs-5">У вас пока нет загруженных файлов.</p>
+        </div>
+    <% } else { %>
+        <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+            <% files.forEach(function(file) { %>
+                <div class="col">
+                    <div class="card h-100 bg-dark text-white border-secondary shadow-sm file-card">
+                        <div class="card-body d-flex flex-column">
+                            <div class="text-center mb-3 display-1">
+                                <% if (file.mimeType && file.mimeType.startsWith('image/')) { %>
+                                    <i class="bi bi-file-earmark-image text-info"></i>
+                                <% } else if (file.mimeType && file.mimeType.startsWith('video/')) { %>
+                                    <i class="bi bi-file-earmark-play text-danger"></i>
+                                <% } else if (file.mimeType === 'application/pdf') { %>
+                                    <i class="bi bi-file-earmark-pdf text-warning"></i>
+                                <% } else { %>
+                                    <i class="bi bi-file-earmark-text text-secondary"></i>
+                                <% } %>
+                            </div>
+                            <h5 class="card-title text-truncate" title="<%= file.originalName %>"><%= file.originalName %></h5>
+                            <p class="card-text text-muted small mb-auto">
+                                <%= (file.size / 1024 / 1024).toFixed(2) %> MB <br>
+                                <%= new Date(file.createdAt).toLocaleDateString() %>
+                            </p>
+                        </div>
+                        <div class="card-footer bg-transparent border-secondary d-flex justify-content-between">
+                            <a href="/file/<%= file.id %>/download" class="btn btn-sm btn-outline-light" title="Скачать">
+                                <i class="bi bi-download"></i>
+                            </a>
+                            <form action="/file/<%= file.id %>/delete" method="POST" class="d-inline" onsubmit="return confirm('Вы уверены, что хотите удалить этот файл?');">
+                                <button type="submit" class="btn btn-sm btn-outline-danger" title="Удалить">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            <% }); %>
+        </div>
+    <% } %>
+</div>
+
+<%- include('partials/footer') %>

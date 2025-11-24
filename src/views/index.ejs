@@ -1,0 +1,46 @@
+<%- include('partials/header', { title: 'NodeDrive', user: null }) %>
+
+<div class="container text-center mt-5">
+    <div class="jumbotron bg-dark text-white p-5 rounded shadow-lg">
+        <h1 class="display-4 fw-bold">Добро пожаловать в NodeDrive</h1>
+        <p class="lead mt-3">Безопасное облачное хранилище для ваших файлов. Загружайте, храните и делитесь!</p>
+        <hr class="my-4 border-secondary">
+        <p>Начните прямо сейчас, это бесплатно и удобно.</p>
+        <div class="mt-4">
+            <a class="btn btn-primary btn-lg px-4 me-2" href="/register" role="button">Начать пользоваться</a>
+            <a class="btn btn-outline-light btn-lg px-4" href="/login" role="button">Войти</a>
+        </div>
+    </div>
+
+    <div class="row mt-5 text-start">
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-secondary bg-dark text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-shield-lock display-4 text-success mb-3"></i>
+                    <h3 class="card-title">Безопасность</h3>
+                    <p class="card-text">Ваши файлы защищены современными алгоритмами шифрования.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-secondary bg-dark text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-phone display-4 text-info mb-3"></i>
+                    <h3 class="card-title">Мобильность</h3>
+                    <p class="card-text">Доступ к файлам с любого устройства, где бы вы ни находились.</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4 mb-4">
+            <div class="card h-100 border-secondary bg-dark text-white shadow">
+                <div class="card-body text-center">
+                    <i class="bi bi-hdd-stack display-4 text-warning mb-3"></i>
+                    <h3 class="card-title">Простота</h3>
+                    <p class="card-text">Интуитивно понятный интерфейс, похожий на Google Drive.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
