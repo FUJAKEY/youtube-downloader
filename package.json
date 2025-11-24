@@ -1,0 +1,38 @@
+{
+  "name": "youtube-downloader",
+  "version": "1.0.0",
+  "description": "Полноценное веб-приложение для загрузки видео с YouTube и TikTok с поддержкой регистрации и личного кабинета.",
+  "main": "src/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "lint": "echo 'lint stage placeholder'",
+    "build:pages": "node scripts/build-pages.js"
+  },
+  "keywords": [
+    "youtube",
+    "tiktok",
+    "downloader",
+    "express",
+    "node"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@distube/ytdl-core": "^4.16.12",
+    "bcryptjs": "^2.4.3",
+    "better-sqlite3": "^9.4.3",
+    "cookie-parser": "^1.4.6",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "helmet": "^7.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "morgan": "^1.10.0",
+    "nanoid": "^5.0.7",
+    "undici": "^6.19.8"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

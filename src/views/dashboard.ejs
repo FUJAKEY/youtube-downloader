@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <%- include('partials/header'); %>
+    <main class="page">
+      <section class="panel panel--wide">
+        <div class="panel__header">
+          <div>
+            <p class="muted">Аккаунт</p>
+            <h2><%= user.email %></h2>
+          </div>
+          <div class="pill">Создан: <%= new Date(user.createdAt).toLocaleDateString('ru-RU') %></div>
+        </div>
+        <div class="grid">
+          <div class="card">
+            <h3>Шаг 1</h3>
+            <p>Вставьте ссылку на ролик YouTube или TikTok.</p>
+          </div>
+          <div class="card">
+            <h3>Шаг 2</h3>
+            <p>Выберите качество от 360p до максимального.</p>
+          </div>
+          <div class="card">
+            <h3>Шаг 3</h3>
+            <p>Нажмите «Скачать» и дождитесь завершения передачи файла.</p>
+          </div>
+        </div>
+        <form id="download-form" class="form form--inline">
+          <label class="form__stretch">
+            Ссылка на видео
+            <input type="url" name="url" placeholder="https://youtu.be/... или https://www.tiktok.com/..." required />
+          </label>
+          <label>
+            Качество
+            <select name="quality">
+              <option value="best">Максимум</option>
+              <option value="360">360p</option>
+              <option value="480">480p</option>
+              <option value="720">720p</option>
+              <option value="1080">1080p</option>
+              <option value="1440">1440p</option>
+              <option value="2160">4K</option>
+            </select>
+          </label>
+          <button class="button button--primary" type="submit">Скачать</button>
+        </form>
+        <div class="form__alert" id="download-alert" hidden></div>
+        <div id="download-result" class="download-result" hidden>
+          <p class="muted">Подготовка загрузки...</p>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer'); %>
+    <script src="/scripts/app.js" defer></script>
+  </body>
+</html>

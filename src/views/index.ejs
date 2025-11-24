@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/styles/main.css" />
+  </head>
+  <body>
+    <%- include('partials/header'); %>
+    <main class="page">
+      <section class="hero">
+        <div class="hero__content">
+          <p class="eyebrow">Профессиональный загрузчик</p>
+          <h1>Многоуровневый StreamMaster</h1>
+          <p class="lead">
+            Авторизация, личный кабинет, выбор качества от 360p до 4K и поддержка двух платформ.
+            Создано на Node.js с продуманной архитектурой.
+          </p>
+          <div class="hero__cta">
+            <% if (user) { %>
+              <a class="button button--primary" href="/dashboard">Перейти в личный кабинет</a>
+            <% } else { %>
+              <a class="button button--primary" href="/register">Регистрация</a>
+              <a class="button button--ghost" href="/login">Я уже с вами</a>
+            <% } %>
+          </div>
+          <div class="hero__grid">
+            <div class="card">
+              <h3>Раздельные слои</h3>
+              <p>Контроллеры, сервисы, middleware и статические assets разнесены по каталогам.</p>
+            </div>
+            <div class="card">
+              <h3>Безопасность</h3>
+              <p>JWT в HttpOnly cookie, защита Helmet, bcrypt-хеширование паролей.</p>
+            </div>
+            <div class="card">
+              <h3>Готовность к деплою</h3>
+              <p>GitHub Actions v4 собирает клиент и публикует Pages-версию.</p>
+            </div>
+          </div>
+        </div>
+        <div class="hero__glass">
+          <div class="glass-card">
+            <h3>Как это работает</h3>
+            <ol>
+              <li>Регистрируетесь или входите.</li>
+              <li>Вставляете ссылку на YouTube или TikTok.</li>
+              <li>Выбираете качество и получаете файл.</li>
+            </ol>
+            <p class="muted">Работает как для ноутбука, так и для мобильных устройств.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <%- include('partials/footer'); %>
+    <script src="/scripts/app.js" defer></script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+<header class="topbar">
+  <div class="topbar__brand">
+    <a href="/" class="brand">StreamMaster</a>
+    <span class="badge">multi-tier</span>
+  </div>
+  <nav class="topbar__nav">
+    <a href="/" class="nav-link">Главная</a>
+    <% if (user) { %>
+      <a href="/dashboard" class="nav-link">Личный кабинет</a>
+      <form id="logout-form" class="nav-link nav-link--button" method="post" action="/api/auth/logout">
+        <button type="submit">Выйти</button>
+      </form>
+    <% } else { %>
+      <a href="/login" class="nav-link">Войти</a>
+      <a href="/register" class="nav-link nav-link--accent">Регистрация</a>
+    <% } %>
+  </nav>
+</header>
