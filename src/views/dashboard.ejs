@@ -1,0 +1,56 @@
+<%- include('partials/header') %>
+
+<div class="row justify-content-center">
+    <div class="col-lg-8">
+        <div class="card shadow-lg mb-5">
+            <div class="card-body p-5">
+                <h1 class="text-center mb-4">Download Video</h1>
+                <p class="text-center text-muted mb-4">Supports YouTube and TikTok</p>
+
+                <form action="/get-info" method="POST" class="mb-4">
+                    <div class="input-group input-group-lg">
+                        <input type="url" class="form-control" name="url" placeholder="Paste link here..." value="<%= video ? video.url : '' %>" required>
+                        <button class="btn btn-primary" type="submit">Get Info</button>
+                    </div>
+                </form>
+
+                <% if (error) { %>
+                    <div class="alert alert-danger"><%= error %></div>
+                <% } %>
+
+                <% if (video) { %>
+                    <div class="card mt-4 border-0 bg-dark">
+                        <div class="row g-0">
+                            <div class="col-md-4">
+                                <img src="<%= video.thumbnail %>" class="img-fluid rounded-start h-100 object-fit-cover" alt="Thumbnail">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate"><%= video.title %></h5>
+                                    <p class="card-text"><small class="text-muted">Select Quality:</small></p>
+
+                                    <div class="list-group">
+                                        <% video.formats.forEach(function(format) { %>
+                                            <a href="/download?url=<%= encodeURIComponent(video.url) %>&format_id=<%= format.format_id %>&title=<%= encodeURIComponent(video.title) %>" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center bg-transparent text-light border-secondary">
+                                                <span>
+                                                    <span class="badge bg-info me-2"><%= format.ext %></span>
+                                                    <%= format.resolution %>
+                                                    <% if (format.acodec === 'none') { %>
+                                                        <span class="badge bg-warning text-dark ms-1">No Audio</span>
+                                                    <% } %>
+                                                </span>
+                                                <span class="badge bg-secondary rounded-pill"><%= format.filesize %></span>
+                                            </a>
+                                        <% }); %>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>
+
+<%- include('partials/footer') %>
